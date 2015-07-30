@@ -10,62 +10,83 @@
  */
 $(function() {
     /* This is our first test suite - a test suite just contains
-    * a related set of tests. This suite is all about the RSS
-    * feeds definitions, the allFeeds variable in our application.
-    */
+     * a related set of tests. This suite is all about the RSS
+     * feeds definitions, the allFeeds variable in our application.
+     */
     describe("RSS Feeds", function() {
-        /* This is our first test - it tests to make sure that the
-         * allFeeds variable has been defined and that it is not
-         * empty. Experiment with this before you get started on
-         * the rest of this project. What happens when you change
-         * allFeeds in app.js to be an empty array and refresh the
-         * page?
-         */
-        it("are defined", function() {
-            expect(allFeeds).toBeDefined();
-            expect(allFeeds.length).not.toBe(0);
-        });
+      /* This is our first test - it tests to make sure that the
+       * allFeeds variable has been defined and that it is not
+       * empty. Experiment with this before you get started on
+       * the rest of this project. What happens when you change
+       * allFeeds in app.js to be an empty array and refresh the
+       * page?
+       */
+      it("are defined", function() {
+        expect(allFeeds).toBeDefined();
+        expect(allFeeds.length).not.toBe(0);
+      });
 
-        it("all have a URL defined", function() {
-          for (i = 0, len = allFeeds.length; i < len; i++) {
-            expect(allFeeds[i].url).toBeDefined();
-          }
-        });
-        /* TODO: Write a test that loops through each feed
-         * in the allFeeds object and ensures it has a URL defined
-         * and that the URL is not empty.
-         */
+      it("all have a URL defined", function() {
+        for (i = 0, len = allFeeds.length; i < len; i++) {
+          expect(allFeeds[i].url).toBeDefined();
+        }
+      });
+      /* TODO: Write a test that loops through each feed
+       * in the allFeeds object and ensures it has a URL defined
+       * and that the URL is not empty.
+       */
 
-        it("all have a name defined", function() {
-          for (i = 0, len = allFeeds.length; i < len; i++) {
-            expect(allFeeds[i].name).toBeDefined();
-          }
-        });
-        /* TODO: Write a test that loops through each feed
-         * in the allFeeds object and ensures it has a name defined
-         * and that the name is not empty.
-         */
-
+      it("all have a name defined", function() {
+        for (i = 0, len = allFeeds.length; i < len; i++) {
+          expect(allFeeds[i].name).toBeDefined();
+        }
+      });
+      /* TODO: Write a test that loops through each feed
+       * in the allFeeds object and ensures it has a name defined
+       * and that the name is not empty.
+       */
     });
 
     describe("The Menu", function() {
-      /* TODO: Write a new test suite named "The menu" */
-      it("is hidden by default", function() {
-        expect($(".menu").is(':visible')).toBe(true);
+    /* TODO: Write a new test suite named "The menu" */
+
+      beforeEach(function(done) {
+        $('.menu-icon-link').trigger('click');
+        setTimeout(function() {
+          done();
+        }, 200);
       });
-          /* TODO: Write a test that ensures the menu element is
-           * hidden by default. You"ll have to analyze the HTML and
-           * the CSS to determine how we"re performing the
-           * hiding/showing of the menu element.
-           */
 
-           /* TODO: Write a test that ensures the menu changes
-            * visibility when the menu icon is clicked. This test
-            * should have two expectations: does the menu display when
-            * clicked and does it hide when clicked again.
-            */
+      it("is hidden by default", function() {
+        expect($(".menu").css("transform")).toBe("matrix(1, 0, 0, 1, -192, 0)");
+      });
+      /* TODO: Write a test that ensures the menu element is
+       * hidden by default. You"ll have to analyze the HTML and
+       * the CSS to determine how we"re performing the
+       * hiding/showing of the menu element.
+       */
 
-      /* TODO: Write a new test suite named "Initial Entries" */
+      it("opens up when the icon is pressed", function(done) {
+        /* When the menu open for first time this will run */
+        expect($(".menu").css("transform")).toBe("matrix(1, 0, 0, 1, 0, 0)");
+
+        /* The menu will then close and the timer will wait an aditional 50ms
+         * waiting for the transition before the expect function is run again */
+        $('.menu-icon-link').trigger('click');
+        setTimeout(function() {
+          expect($(".menu").css("transform")).toBe("matrix(1, 0, 0, 1, -192, 0)");
+          done();
+        }, 250);
+      });
+      /* TODO: Write a test that ensures the menu changes
+       * visibility when the menu icon is clicked. This test
+       * should have two expectations: does the menu display when
+       * clicked and does it hide when clicked again.
+       */
+     });
+
+     describe("Initial Entries", function() {
+     /* TODO: Write a new test suite named "Initial Entries" */
 
           /* TODO: Write a test that ensures when the loadFeed
            * function is called and completes its work, there is at least
@@ -73,12 +94,15 @@ $(function() {
            * Remember, loadFeed() is asynchronous so this test wil require
            * the use of Jasmine"s beforeEach and asynchronous done() function.
            */
+    });
 
-      /* TODO: Write a new test suite named "New Feed Selection"
+    describe("New Feed Selection", function() {
+    /* TODO: Write a new test suite named "New Feed Selection" */
 
-          /* TODO: Write a test that ensures when a new feed is loaded
-           * by the loadFeed function that the content actually changes.
-           * Remember, loadFeed() is asynchronous.
-           */
+
+      /* TODO: Write a test that ensures when a new feed is loaded
+       * by the loadFeed function that the content actually changes.
+       * Remember, loadFeed() is asynchronous.
+       */
     });
 }());
