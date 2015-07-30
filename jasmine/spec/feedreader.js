@@ -27,6 +27,7 @@ $(function() {
       });
 
       it("all have a URL defined", function() {
+        /* Checks if all feed data has a URL existing */
         for (i = 0, len = allFeeds.length; i < len; i++) {
           expect(allFeeds[i].url).toBeDefined();
         }
@@ -37,6 +38,7 @@ $(function() {
        */
 
       it("all have a name defined", function() {
+        /* Checks if all feed data has a name amended */
         for (i = 0, len = allFeeds.length; i < len; i++) {
           expect(allFeeds[i].name).toBeDefined();
         }
@@ -51,7 +53,6 @@ $(function() {
     /* TODO: Write a new test suite named "The menu" */
 
       it("is hidden by default", function() {
-        //expect($(".menu").css("transform")).toBe("matrix(1, 0, 0, 1, -192, 0)");
         expect($("body").hasClass("menu-hidden")).toBe(true);
       });
       /* TODO: Write a test that ensures the menu element is
@@ -61,9 +62,11 @@ $(function() {
        */
 
       it("opens up when the icon is pressed", function() {
+        /* Checks if after the icon is clicked the menu-hidden trait is removed */
         $(".menu-icon-link").trigger("click");
         expect($("body").hasClass("menu-hidden")).toBe(false);
 
+        /* Checks if after the icon is clicked the menu-hidden trait is appended*/
         $(".menu-icon-link").trigger("click");
         expect($("body").hasClass("menu-hidden")).toBe(true);
       });
