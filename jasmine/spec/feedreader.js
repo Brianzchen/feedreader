@@ -84,7 +84,7 @@ $(function() {
       });
 
       it("loads all the work", function(done) {
-        expect($(".feed")).not.toBe(0);
+        expect($('.feed').children().first().children().first().hasClass("entry")).toBe(true);
         done();
       });
       /* TODO: Write a test that ensures when the loadFeed
