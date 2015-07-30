@@ -84,7 +84,7 @@ $(function() {
       });
 
       it("loads all the work", function(done) {
-        expect($('.feed').children().first().children().first().hasClass("entry")).toBe(true);
+        expect($(".feed").children().first().children().first().hasClass("entry")).toBe(true);
         done();
       });
       /* TODO: Write a test that ensures when the loadFeed
@@ -97,8 +97,19 @@ $(function() {
 
     describe("New Feed Selection", function() {
     /* TODO: Write a new test suite named "New Feed Selection" */
-      it("actually changes the content", function() {
-        expect(true).toBe(true);
+
+      beforeEach(function(done) {
+        loadFeed(0, function() {
+          done();
+        });
+      });
+
+      it("actually changes the content", function(done) {
+        /* Checks the first and second feed uploaded and compares to see if
+         * different, or updated compared to the previous feed
+         */
+        expect($(".entry-link")[0] == $(".entry-link")[1]).toBe(false);
+        done();
       });
       /* TODO: Write a test that ensures when a new feed is loaded
        * by the loadFeed function that the content actually changes.
