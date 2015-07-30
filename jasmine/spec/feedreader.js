@@ -70,13 +70,13 @@ $(function() {
         /* When the menu open for first time this will run */
         expect($(".menu").css("transform")).toBe("matrix(1, 0, 0, 1, 0, 0)");
 
-        /* The menu will then close and the timer will wait an aditional 50ms
+        /* The menu will then close and the timer will wait an aditional 400ms
          * waiting for the transition before the expect function is run again */
         $('.menu-icon-link').trigger('click');
         setTimeout(function() {
           expect($(".menu").css("transform")).toBe("matrix(1, 0, 0, 1, -192, 0)");
           done();
-        }, 250);
+        }, 600);
       });
       /* TODO: Write a test that ensures the menu changes
        * visibility when the menu icon is clicked. This test
@@ -88,12 +88,22 @@ $(function() {
      describe("Initial Entries", function() {
      /* TODO: Write a new test suite named "Initial Entries" */
 
-          /* TODO: Write a test that ensures when the loadFeed
-           * function is called and completes its work, there is at least
-           * a single .entry element within the .feed container.
-           * Remember, loadFeed() is asynchronous so this test wil require
-           * the use of Jasmine"s beforeEach and asynchronous done() function.
-           */
+      beforeEach(function(done) {
+        loadFeed(0, function() {
+          done();
+        });
+      });
+
+      it("loads all the work", function(done) {
+        expect($(".feed")).not.toBe(0);
+        done();
+      });
+      /* TODO: Write a test that ensures when the loadFeed
+       * function is called and completes its work, there is at least
+       * a single .entry element within the .feed container.
+       * Remember, loadFeed() is asynchronous so this test wil require
+       * the use of Jasmine"s beforeEach and asynchronous done() function.
+       */
     });
 
     describe("New Feed Selection", function() {
