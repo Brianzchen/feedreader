@@ -50,15 +50,9 @@ $(function() {
     describe("The Menu", function() {
     /* TODO: Write a new test suite named "The menu" */
 
-      beforeEach(function(done) {
-        $('.menu-icon-link').trigger('click');
-        setTimeout(function() {
-          done();
-        }, 200);
-      });
-
       it("is hidden by default", function() {
-        expect($(".menu").css("transform")).toBe("matrix(1, 0, 0, 1, -192, 0)");
+        //expect($(".menu").css("transform")).toBe("matrix(1, 0, 0, 1, -192, 0)");
+        expect($("body").hasClass("menu-hidden")).toBe(true);
       });
       /* TODO: Write a test that ensures the menu element is
        * hidden by default. You"ll have to analyze the HTML and
@@ -66,17 +60,12 @@ $(function() {
        * hiding/showing of the menu element.
        */
 
-      it("opens up when the icon is pressed", function(done) {
-        /* When the menu open for first time this will run */
-        expect($(".menu").css("transform")).toBe("matrix(1, 0, 0, 1, 0, 0)");
+      it("opens up when the icon is pressed", function() {
+        $(".menu-icon-link").trigger("click");
+        expect($("body").hasClass("menu-hidden")).toBe(false);
 
-        /* The menu will then close and the timer will wait an aditional 400ms
-         * waiting for the transition before the expect function is run again */
-        $('.menu-icon-link').trigger('click');
-        setTimeout(function() {
-          expect($(".menu").css("transform")).toBe("matrix(1, 0, 0, 1, -192, 0)");
-          done();
-        }, 600);
+        $(".menu-icon-link").trigger("click");
+        expect($("body").hasClass("menu-hidden")).toBe(true);
       });
       /* TODO: Write a test that ensures the menu changes
        * visibility when the menu icon is clicked. This test
@@ -108,8 +97,9 @@ $(function() {
 
     describe("New Feed Selection", function() {
     /* TODO: Write a new test suite named "New Feed Selection" */
-
-
+      it("actually changes the content", function() {
+        expect(true).toBe(true);
+      });
       /* TODO: Write a test that ensures when a new feed is loaded
        * by the loadFeed function that the content actually changes.
        * Remember, loadFeed() is asynchronous.
