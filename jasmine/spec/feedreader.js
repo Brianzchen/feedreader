@@ -96,7 +96,7 @@ $(function() {
        * a single .entry element within the .feed container.
        */
       it('loads all the work', function(done) {
-        expect($('.feed').children().first().children().first().hasClass('entry')).toBe(true);
+        expect(document.getElementsByClassName('entry').length).not.toBe(0);
         done();
       });
     });
