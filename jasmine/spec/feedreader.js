@@ -45,6 +45,8 @@ $(function() {
         /* Checks if all feed data has a name amended */
         for (i = 0, len = allFeeds.length; i < len; i++) {
           expect(allFeeds[i].name).toBeDefined();
+          /* If the name is defined make sure it's length is greater than zero */
+          expect(allFeeds[i].name.length > 0).toBe(true);
         }
       });
     });
