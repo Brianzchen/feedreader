@@ -100,24 +100,32 @@ $(function() {
     });
 
     describe('New Feed Selection', function() {
+      var firstLoad;
+      var secondLoad;
 
       /* Runs LoadFeed asynchronously because all data needs to be
        * obtained from Google API before the test can be run
        */
       beforeEach(function(done) {
-        loadFeed(0, function() {
+        /* Gets the content of the initial feed */
+        firstLoad = $('.feed').children();
+
+        /* Loads a new feed to have its contents checked */
+        loadFeed(1, function() {
           done();
         });
       });
-
       /* A test that ensures when a new feed is loaded
        * by the loadFeed function that the content actually changes.
        */
       it('actually changes the content', function(done) {
-        /* Checks the first and second feed uploaded and compares to see if
-         * different, or updated compared to the previous feed
-         */
-        expect($('.entry-link')[0] == $('.entry-link')[1]).toBe(false);
+        /* Gets the contents of the second feed load */
+        secondLoad = $('.feed').children();
+
+         /* Checks the first and second feed uploaded and compares to see if
+          * different, or updated compared to the previous feed
+          */
+        expect(firstLoad.is(secondLoad)).toBe(false);
         done();
       });
     });
