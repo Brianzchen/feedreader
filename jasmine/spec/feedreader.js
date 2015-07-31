@@ -124,9 +124,9 @@ $(function() {
         /* Gets the contents of the second feed load */
         secondLoad = $('.feed').children();
 
-         /* Checks the first and second feed uploaded and compares to see if
-          * different, or updated compared to the previous feed
-          */
+        /* Checks the first and second feed uploaded and compares to see if
+         * different, or updated compared to the previous feed
+         */
         expect(firstLoad.is(secondLoad)).toBe(false);
         done();
       });
