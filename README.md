@@ -13,3 +13,7 @@ This project demonstrates my ability to test code through test driven developmen
 5. A test that ensures the menu changes visibility when the menu icon is clicked. For instance, does the menu display when clicked and does it hide when clicked again.
 6. A test that ensures when the loadFeed function is called and completes its work, there is at least a single .entry element within the .feed container.
 7. A test that ensures when a new feed is loaded by the loadFeed function that the content actually changes.
+
+## How to run the application
+
+To run this application download the zip file and open index.html by right-clicking on the file and opening it in your favorite browser. You can then witness all tests running as intended.
