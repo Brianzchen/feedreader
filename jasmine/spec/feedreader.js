@@ -78,9 +78,9 @@ $(function() {
         $('.menu-icon-link').trigger('click');
         expect($('body').hasClass('menu-hidden')).toBe(true);
       });
-     });
+    });
 
-     describe('Initial Entries', function() {
+    describe('Initial Entries', function() {
 
       /* Runs LoadFeed asynchronously because all data needs to be
        * obtained from Google API before the test can be run
