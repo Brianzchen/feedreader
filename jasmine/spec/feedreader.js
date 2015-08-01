@@ -106,28 +106,35 @@ $(function() {
       var secondLoad;
 
       /* Runs LoadFeed asynchronously because all data needs to be
-       * obtained from Google API before the test can be run
+       * obtained from Google API before the test can be run.
+       * The first feed is run incase the inital feed that is run isn't of
+       * id zero whcih may cause errors later.
        */
       beforeEach(function(done) {
-        /* Gets the content of the initial feed */
-        firstLoad = $('.feed').children();
-
-        /* Loads a new feed to have its contents checked */
-        loadFeed(1, function() {
-          done();
+        loadFeed(0, function() {
+          /* Gets the content of the initial feed */
+          firstLoad = $('.feed').html();
+          loadFeed(1, function() {
+            /* Gets the contents of the second feed load */
+            secondLoad = $('.feed').html();
+            done();
+          });
         });
       });
+
       /* A test that ensures when a new feed is loaded
        * by the loadFeed function that the content actually changes.
        */
       it('actually changes the content', function(done) {
-        /* Gets the contents of the second feed load */
-        secondLoad = $('.feed').children();
-
+        /* Checks the feed loads to make sure both actually have content
+         * to be compared against
+         */
+        expect(firstLoad).not.toBe(undefined);
+        expect(secondLoad).not.toBe(undefined);
         /* Checks the first and second feed uploaded and compares to see if
          * different, or updated compared to the previous feed
          */
-        expect(firstLoad.is(secondLoad)).toBe(false);
+        expect(firstLoad == secondLoad).toBe(false);
         done();
       });
     });
